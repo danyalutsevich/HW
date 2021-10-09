@@ -39,11 +39,8 @@ int main()
 
 	Fraction f;
 
-	//std::cin >> f.numerator;
-	//std::cin >> f.denominator;
-
-	//f.inverse();
 	f.cinFromConsole();
+	f.inverse();
 	f.print();
 
 }
