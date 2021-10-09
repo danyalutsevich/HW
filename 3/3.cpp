@@ -1,24 +1,24 @@
-
 #include <iostream>
-#include <string>
 
 class Fraction {
 
 public:
 
-	std::string fraction;
-	
-	void inverse() {
+	int numerator;
+	int denominator;
 
-		fraction = fraction.substr(fraction.find("/") + 1, fraction.length()) + "/" + std::to_string(stoi(fraction));
-		
-	}
 	void print() {
 
-		std::cout << fraction;
+		std::cout << numerator << "/" << denominator;
 
 	}
-	
+	void inverse() {
+
+		int temp = numerator;
+		numerator = denominator;
+		denominator = temp;
+
+	}
 
 };
 
@@ -26,9 +26,11 @@ int main()
 {
 
 	Fraction f;
-	std::cin>>f.fraction;
+
+	std::cin >> f.numerator;
+	std::cin >> f.denominator;
 
 	f.inverse();
 	f.print();
-}
 
+}
