@@ -6,6 +6,18 @@ public:
 
 	int numerator;
 	int denominator;
+	
+	Fraction() {
+
+
+
+	}
+	Fraction(int numerator, int denominator) {
+
+		this->numerator = numerator;
+		this->denominator = denominator;
+
+	}
 
 	void print() {
 
@@ -31,16 +43,54 @@ public:
 
 
 	}
+	void operator +=(Fraction temp) {
+
+		this->numerator *= temp.denominator;
+		temp.numerator *= this->denominator;
+		this->numerator += temp.numerator;
+
+		this->denominator *= temp.denominator;
+		temp.denominator = this->denominator;
+
+
+	}
+
+	Fraction operator +(Fraction temp) {
+
+		Fraction temp2;
+
+		temp2.numerator = this->numerator * temp.denominator + temp.numerator * this->denominator;
+
+		temp2.denominator = this->denominator * temp.denominator;
+
+		return temp2;
+
+	}
+	Fraction operator +(int temp) {
+
+		Fraction temp2;
+
+		temp2.numerator = this->numerator  + this->denominator * temp;
+
+		temp2.denominator = this->denominator;
+
+		return temp2;
+
+	}
+
+
 
 };
 
 int main()
 {
 
-	Fraction f;
+	Fraction f(12, 3);
+	Fraction d(2, 4);
+	f = f + d;
 
-	f.cinFromConsole();
-	f.inverse();
+	//f.cinFromConsole();
+	//f.inverse();
 	f.print();
 
 }
