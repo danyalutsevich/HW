@@ -19,6 +19,18 @@ public:
 		denominator = temp;
 
 	}
+	void cinFromConsole() {
+
+		std::cin >> numerator;
+		do {
+
+			std::cin >> denominator;
+
+		} while (!denominator);
+
+
+
+	}
 
 };
 
@@ -27,10 +39,11 @@ int main()
 
 	Fraction f;
 
-	std::cin >> f.numerator;
-	std::cin >> f.denominator;
+	//std::cin >> f.numerator;
+	//std::cin >> f.denominator;
 
-	f.inverse();
+	//f.inverse();
+	f.cinFromConsole();
 	f.print();
 
 }
