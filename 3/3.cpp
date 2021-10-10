@@ -14,6 +14,8 @@ public:
 	int GetSize() {
 		return size;
 	}
+
+	T& get(int index);
 	T& operator[](const int index);
 
 
@@ -76,6 +78,28 @@ void List<T>::push_back(T data){
 
 
 template<typename T>
+T& List<T>::get(int index)
+{
+	
+	Node <T>* temp = this->head;
+	int counter = 0;
+
+	while (temp->next != nullptr) {
+
+		if (counter == index) {
+
+			return temp->data;
+
+		}
+
+		temp = temp->next;
+		counter++;
+
+	}
+
+}
+
+template<typename T>
 T& List<T>::operator[](const int index) {
 	
 	Node <T> *temp = this->head;
@@ -98,16 +122,11 @@ T& List<T>::operator[](const int index) {
 }
 
 
+
 int main() {
 
 
 	List<int> list;
-
-	list.push_back(3);
-	list.push_back(4);
-	list.push_back(7);
-
-
 	
 	int num = 0;
 	std::cin >> num;
@@ -122,7 +141,7 @@ int main() {
 
 	for (int i = 0; i < list.GetSize(); i++) {
 
-		std::cout << list[i]<<"\n";
+		std::cout << list.get(i)<<"\n";
 
 	}
 
