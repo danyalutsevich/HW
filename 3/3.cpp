@@ -119,15 +119,53 @@ public:
 
 	}
 
+	int NOD() {
+
+		Fraction temp=*this;
+		if (temp.numerator !=0&& temp.denominator!=0) {
+
+			if (temp.numerator > temp.denominator) {
+
+				temp.numerator = temp.numerator % temp.denominator;
+				temp.NOD();
+			}
+			else {
+
+				temp.denominator = temp.denominator % temp.numerator;
+				temp.NOD();
+			}
+
+		}
+		else {
+
+			return temp.denominator + temp.numerator;
+		}
+
+		
+		
+
+	}
+
+	void cut() {
+
+		int nod = this->NOD();
+		this->numerator /= nod;
+		this->denominator /= nod;
+		
+
+	}
 
 };
 
 int main()
 {
 
-	Fraction f(3, 4);
+	Fraction f(3, 9);
 	Fraction d(1, 4);
-	f = f - d;
+	//f = f - d;
+	f.print();
+
+	f.cut();
 
 	//f.cinFromConsole();
 	//f.inverse();
