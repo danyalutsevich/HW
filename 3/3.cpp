@@ -58,10 +58,18 @@ public:
 	Fraction operator +(Fraction temp) {
 
 		Fraction temp2;
+		if (this->denominator==temp.denominator) {
 
-		temp2.numerator = this->numerator * temp.denominator + temp.numerator * this->denominator;
+			temp2.denominator = this->denominator;
+			temp2.numerator = this->numerator + temp.numerator;
 
-		temp2.denominator = this->denominator * temp.denominator;
+		}
+		else {
+
+			temp2.numerator = this->numerator * temp.denominator + temp.numerator * this->denominator;
+			temp2.denominator = this->denominator * temp.denominator;
+
+		}
 
 		return temp2;
 
@@ -78,6 +86,38 @@ public:
 
 	}
 
+	Fraction operator -(Fraction temp) {
+
+		Fraction temp2;
+
+		if (this->denominator == temp.denominator) {
+
+			temp2.denominator = this->denominator;
+			temp2.numerator = this->numerator - temp.numerator;
+
+		}
+		else {
+
+			temp2.numerator = this->numerator * temp.denominator - temp.numerator * this->denominator;
+			temp2.denominator = this->denominator * temp.denominator;
+
+		}
+
+		return temp2;
+
+	}
+
+	Fraction operator -(int temp) {
+
+		Fraction temp2;
+
+		temp2.numerator = this->numerator - this->denominator * temp;
+
+		temp2.denominator = this->denominator;
+
+		return temp2;
+
+	}
 
 
 };
@@ -85,9 +125,9 @@ public:
 int main()
 {
 
-	Fraction f(12, 3);
-	Fraction d(2, 4);
-	f = f + d;
+	Fraction f(3, 4);
+	Fraction d(1, 4);
+	f = f - d;
 
 	//f.cinFromConsole();
 	//f.inverse();
