@@ -1,64 +1,130 @@
-﻿// CopyMove.cpp : Copy & Move semantics
-//
-#define _CRT_SECURE_NO_WARNINGS
+﻿
 #include <iostream>
 
-class Type {
+
+
+template <typename T>
+class List {
+	
 public:
-    int x;
-    int arraySize;
-    char* str;
+	List();
+	~List();
 
-    Type() {
+	void push_back(T data);
+	int GetSize() {
+		return size;
+	}
+	T& operator[](const int index);
 
 
-    }
-    Type(int x):Type() {
+private:
 
-        this->x = x;
+	template <typename T>
+	class Node {
+	public:
+		int data;
+		Node* next;
+		Node(T data = T(),Node* next = nullptr) {
 
-    }
-    Type(int x,int arraySize):Type(x) {
+			this->data = data;
+			this->next = next;
 
-        this->arraySize = arraySize;
-        this->str = new char[arraySize];
+		}
+	};
 
-    }
-    Type(const Type &temp) {
+	int size;
+	Node<T>* head;
 
-        this->x = temp.x;
-        this->arraySize = temp.arraySize;
-        this->str = new char[temp.arraySize];
-
-    }
-    void operator =(Type temp) {
-
-        this->x = temp.x;
-        this->arraySize = temp.arraySize;
-        this->str = new char[temp.arraySize];
-
-    }
 };
+template <typename T>
+List<T>::List() {
 
-int main()
-{
-    Type A;
-    A.x = 10;
-    A.str = new char[100];  // Перенести в конструктор
-    strcpy(A.str, "Hello World!\n");
+	size = 0;
+	head = nullptr;
+
+}
+template <typename T>
+List<T>::~List() {
 
 
-    // Создать конструктор копирования
-    Type B = A;  // CopyCtr(-), Copy=(-), DefCtr, Def=
-    B.str[2] = 'X';
 
-    // Создать оператор копирования
-    Type C;
-    C = A;  // Copy=(-), Def=
 
-    std::cout << (void*)A.str << " " << A.str;
-    std::cout << (void*)B.str << " " << B.str;
-    std::cout << (void*)C.str << " " << C.str;
+}
 
-    return 0;
+template<typename T>
+void List<T>::push_back(T data){
+
+	if (head==nullptr) {
+
+		head = new Node<T>(data);
+	}
+	else {
+
+		Node<T>* temp=this->head;
+
+		while (temp->next!=nullptr) {
+
+			temp = temp->next;
+
+		}
+		temp->next = new Node<T>(data);
+
+	}
+	size++;
+
+}
+
+
+template<typename T>
+T& List<T>::operator[](const int index) {
+	
+	Node <T> *temp = this->head;
+	int counter = 0;
+
+	while (temp->next!=nullptr) {
+
+		if (counter==index) {
+
+			return temp->data;
+
+		}
+
+		temp = temp->next;
+		counter++;
+
+	}
+
+
+}
+
+
+int main() {
+
+
+	List<int> list;
+
+	list.push_back(3);
+	list.push_back(4);
+	list.push_back(7);
+
+
+	
+	int num = 0;
+	std::cin >> num;
+
+	for (int i = 0; i < num;i++) {
+		
+		list.push_back(rand() % 100);
+
+	}
+
+	std::cout << "\n";
+
+	for (int i = 0; i < list.GetSize(); i++) {
+
+		std::cout << list[i]<<"\n";
+
+	}
+
+
 }
