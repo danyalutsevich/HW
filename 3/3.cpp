@@ -1,174 +1,36 @@
+//List2:cpp Double linked list
+
 #include <iostream>
-
-class Fraction {
-
-public:
-
-	int numerator;
-	int denominator;
-	
-	Fraction() {
-
-
-
-	}
-	Fraction(int numerator, int denominator) {
-
-		this->numerator = numerator;
-		this->denominator = denominator;
-
-	}
-
-	void print() {
-
-		std::cout << numerator << "/" << denominator;
-
-	}
-	void inverse() {
-
-		int temp = numerator;
-		numerator = denominator;
-		denominator = temp;
-
-	}
-	void cinFromConsole() {
-
-		std::cin >> numerator;
-		do {
-
-			std::cin >> denominator;
-
-		} while (!denominator);
-
-
-
-	}
-	void operator +=(Fraction temp) {
-
-		this->numerator *= temp.denominator;
-		temp.numerator *= this->denominator;
-		this->numerator += temp.numerator;
-
-		this->denominator *= temp.denominator;
-		temp.denominator = this->denominator;
-
-
-	}
-
-	Fraction operator +(Fraction temp) {
-
-		Fraction temp2;
-		if (this->denominator==temp.denominator) {
-
-			temp2.denominator = this->denominator;
-			temp2.numerator = this->numerator + temp.numerator;
-
-		}
-		else {
-
-			temp2.numerator = this->numerator * temp.denominator + temp.numerator * this->denominator;
-			temp2.denominator = this->denominator * temp.denominator;
-
-		}
-
-		return temp2;
-
-	}
-	Fraction operator +(int temp) {
-
-		Fraction temp2;
-
-		temp2.numerator = this->numerator  + this->denominator * temp;
-
-		temp2.denominator = this->denominator;
-
-		return temp2;
-
-	}
-
-	Fraction operator -(Fraction temp) {
-
-		Fraction temp2;
-
-		if (this->denominator == temp.denominator) {
-
-			temp2.denominator = this->denominator;
-			temp2.numerator = this->numerator - temp.numerator;
-
-		}
-		else {
-
-			temp2.numerator = this->numerator * temp.denominator - temp.numerator * this->denominator;
-			temp2.denominator = this->denominator * temp.denominator;
-
-		}
-
-		return temp2;
-
-	}
-
-	Fraction operator -(int temp) {
-
-		Fraction temp2;
-
-		temp2.numerator = this->numerator - this->denominator * temp;
-
-		temp2.denominator = this->denominator;
-
-		return temp2;
-
-	}
-
-	int NOD() {
-
-		Fraction temp=*this;
-		if (temp.numerator !=0&& temp.denominator!=0) {
-
-			if (temp.numerator > temp.denominator) {
-
-				temp.numerator = temp.numerator % temp.denominator;
-				temp.NOD();
-			}
-			else {
-
-				temp.denominator = temp.denominator % temp.numerator;
-				temp.NOD();
-			}
-
-		}
-		else {
-
-			return temp.denominator + temp.numerator;
-		}
-
-		
-		
-
-	}
-
-	void cut() {
-
-		int nod = this->NOD();
-		this->numerator /= nod;
-		this->denominator /= nod;
-		
-
-	}
-
-};
+#include "List.h"
 
 int main()
 {
+	List<float> list;
 
-	Fraction f(3, 9);
-	Fraction d(1, 4);
-	//f = f - d;
-	f.print();
+	list.add(1.0);
+	list.add(9.0);
+	list.add(5.0);
+	list.add(9.0);
+	list.insertBefore(2.5, 1);
+	list.add(9.0);
+	list.print(0);
+	std::cout << "\n";
+	std::cout << list.deleteValue(9);
+	std::cout << "\n";
+	list.print(0);
 
-	f.cut();
+	//try {
 
-	//f.cinFromConsole();
-	//f.inverse();
-	f.print();
+	//	list.deleteIndex(1);
+	//}
+	//catch (const std::exception& ex) {
 
+	//	std::cout << ex.what();
+	//	return -1;
+	//}
+	//std::cout << "\n";
+	////list.print();
+
+	return 0;
 }
+

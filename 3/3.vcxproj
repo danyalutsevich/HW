@@ -141,6 +141,12 @@
   <ItemGroup>
     <ClCompile Include="3.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\Double linked list\Double linked list\List.h" />
+    <ClInclude Include="..\..\Double linked list\Double linked list\Node.h" />
+    <ClInclude Include="..\List.h" />
+    <ClInclude Include="..\Node.h" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
