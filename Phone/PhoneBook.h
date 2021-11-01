@@ -1,6 +1,7 @@
 #pragma once
 
 #include <iostream>
+#include <vector>
 #include <map>
 
 
@@ -11,7 +12,6 @@ private:
 	std::multimap<std::string, std::string>* phoneBook = new std::multimap<std::string, std::string>;
 
 public:
-
 
 	PhoneBook* add(std::string name, std::string phone) {
 
@@ -30,31 +30,26 @@ public:
 		return this;
 	}
 
-	//not working
-	//PhoneBook* deleteByPhone(std::string phone) {
+	PhoneBook* deleteByPhone(std::string phone) {
 
-	//	for (std::multimap<std::string, std::string>::const_iterator i = phoneBook->cbegin(); i != phoneBook->cend(); ++i) {
+		std::vector<std::string> phones;
 
-	//		if (i->second == phone) {
+		for (std::multimap<std::string, std::string>::const_iterator i = phoneBook->cbegin(); i != phoneBook->cend(); i++) {
 
-	//			phoneBook->erase(i->first);
+			if (i->second == phone) {
 
-	//		}
+				phones.push_back(i->first);
+			}
+		}
 
-	//	}
+		for (int i = 0; i < phones.size(); i++) {
 
-	//	for (std::multimap<std::string, std::string>::const_iterator i : *phoneBook) {
 
-	//		if (i == phone) {
+			phoneBook->erase(phones[i]);
+		}
 
-	//			phoneBook->erase(i.first);
-
-	//		}
-
-	//	}
-
-	//	return this;
-	//}
+		return this;
+	}
 
 	PhoneBook* print() {
 

@@ -23,9 +23,7 @@ int main()
 	phone->findByPhone("4444444");
 
 	phone->deleteByName("d");
-
-	//not working
-	//phone->deleteByPhone("4444444");
+	phone->deleteByPhone("5555555");
 
 	std::cout << "\n\n\n";
 	phone->print();
