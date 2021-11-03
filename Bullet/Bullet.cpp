@@ -1,6 +1,6 @@
 
 #include <iostream>
-#include <string>
+#include <vector>
 
 class Bullet {
 
@@ -37,33 +37,16 @@ int Bullet::objCount = 0;
 
 int main()
 {
+	std::vector<std::unique_ptr<Bullet>> bulletV;
 	try {
 
 		std::cout << Bullet::objCount << "\n";
 
-		Bullet one;
-		one.thisPrint();
+		for (int i = 0; i < 6; i++) {
 
-		Bullet two;
-		two.thisPrint();
-
-		Bullet three;
-		three.thisPrint();
-		
-		Bullet four;
-		four.thisPrint();
-
-		Bullet five;
-		five.thisPrint();
-		
-		Bullet six;
-		six.thisPrint();
-		
-		Bullet seven;	
-		seven.thisPrint();
-		
-		Bullet eight;
-		eight.thisPrint();
+			bulletV.push_back(std::unique_ptr<Bullet>(new Bullet));
+			bulletV[i]->thisPrint();
+		}
 
 	}
 	catch (const std::exception& ex) {
