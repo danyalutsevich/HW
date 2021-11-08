@@ -41,7 +41,7 @@ public:
 		return Im;
 	}
 
-	Complex Abs() {
+	double Abs() {
 
 		return sqrt((Re*Re)+(Im*Im));
 	}
@@ -97,7 +97,7 @@ public:
 		return Im;
 	}
 
-	ComplexStruct Abs() {
+	double Abs() {
 
 		return sqrt((Re * Re) + (Im * Im));
 	}
@@ -116,7 +116,8 @@ public:
 
 int main()
 {
-	Complex num(1,1);
+	Complex num(1,2);
+	std::cout<<num.Abs();
 
 	ComplexStruct num1;
 
