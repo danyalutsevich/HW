@@ -14,7 +14,6 @@ public:
 	Person() : name{ NULL }, surname{ NULL }{
 
 
-
 	}
 
 	Person(const char* name, const char* surname) {
@@ -28,7 +27,6 @@ public:
 		strcpy(this->name, name);
 		this->surname = new char[strlen(surname) + 1];
 		strcpy(this->surname, surname);
-
 	}
 
 	Person(const Person& tmp) {
@@ -42,7 +40,6 @@ public:
 		strcpy(this->name, tmp.name);
 		this->surname = new char[strlen(tmp.surname) + 1];
 		strcpy(this->surname, tmp.surname);
-
 	}
 
 	Person(Person&& tmp) noexcept : name{ tmp.getName() }, surname{ tmp.getSurname() } {
@@ -52,33 +49,31 @@ public:
 	}
 
 	void setName(const char* name) {
+
 		if (this->name) {
 
 			delete[] this->name;
 		}
 		this->name = new char[strlen(name) + 1];
 		strcpy(this->name, name);
-
 	}
 
 	void setSurname(const char* surname) {
+
 		if (this->surname) {
 
 			delete[] this->surname;
 		}
 		this->surname = new char[strlen(surname) + 1];
 		strcpy(this->surname, surname);
-
 	}
 
 	char* getName() {
 
 		return name;
-
 	}
 
 	char* getSurname() {
-
 
 		return surname;
 	}
