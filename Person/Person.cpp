@@ -17,7 +17,7 @@ public:
 
 	}
 
-	Person(const char *name, const char* surname){
+	Person(const char* name, const char* surname) {
 
 		if (!name || !surname) {
 
@@ -31,9 +31,9 @@ public:
 
 	}
 
-	Person(const Person & tmp) {
+	Person(const Person& tmp) {
 
-		if (!name || !surname) {
+		if (!tmp.name || !tmp.surname) {
 
 			throw std::exception("name or surname is NULL");
 		}
@@ -45,13 +45,13 @@ public:
 
 	}
 
-	Person(Person&& tmp) noexcept : name{ tmp.getName() }, surname{tmp.getSurname()} {
+	Person(Person&& tmp) noexcept : name{ tmp.getName() }, surname{ tmp.getSurname() } {
 
 		tmp.name = NULL;
 		tmp.surname = NULL;
 	}
-	
-	void setName(const char *name) {
+
+	void setName(const char* name) {
 		if (this->name) {
 
 			delete[] this->name;
@@ -61,7 +61,7 @@ public:
 
 	}
 
-	void setSurname(const char * surname) {
+	void setSurname(const char* surname) {
 		if (this->surname) {
 
 			delete[] this->surname;
@@ -89,7 +89,7 @@ public:
 
 			delete[] this->surname;
 		}
-		
+
 		if (this->name) {
 
 			delete[] this->name;
@@ -98,10 +98,10 @@ public:
 		this->name = new char[strlen(tmp.name) + 1];
 		this->surname = new char[strlen(tmp.surname) + 1];
 
-		strcpy(this->name,tmp.name);
-		strcpy(this->surname,tmp.surname);
+		strcpy(this->name, tmp.name);
+		strcpy(this->surname, tmp.surname);
 
-	
+
 	}
 
 	~Person() {
@@ -127,17 +127,25 @@ int main()
 
 	std::cout << p.getName() << " " << p.getSurname() << "\n";*/
 
-	Person t("Testun", "Proverych");
-	Person p = t;
-	p.setName("Testunia");
-	Person r;
-	r.setName("Fred");
-	r.setSurname("Fredovich");
+	try {
 
-	p = r;
-	std::cout << t.getName() << " " << t.getSurname() << "\n";
-	std::cout << p.getName() << " " << p.getSurname() << "\n";
-	std::cout << r.getName() << " " << r.getSurname() << "\n";
+		Person t("Testun", "Proverych");
+		Person p = t;
+		p.setName("Testunia");
+		Person r;
+		r.setName("Fred");
+		r.setSurname("Fredovich");
+
+		p = r;
+		std::cout << t.getName() << " " << t.getSurname() << "\n";
+		std::cout << p.getName() << " " << p.getSurname() << "\n";
+		std::cout << r.getName() << " " << r.getSurname() << "\n";
+
+	}
+	catch (const std::exception& ex) {
+
+		std::cout << ex.what();
+	}
 
 
 }
